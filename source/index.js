@@ -10,9 +10,13 @@ module.exports = function (THREE) {
    * @author mrdoob / http://mrdoob.com/
    */
 
-  THREE.OBJLoader = function (manager) {
+  THREE.OBJLoader = function (manager, debug) {
 
-    this.manager = (manager !== undefined) ? manager : THREE.DefaultLoadingManager;
+    this.manager = (manager !== undefined && manager !== null) ?
+      manager :
+      THREE.DefaultLoadingManager;
+
+    this.debug = (debug !== undefined) ? debug : true;
 
     this.materials = null;
 
@@ -427,12 +431,8 @@ module.exports = function (THREE) {
 
     },
 
-    parse: function (text, debug) {
-      if (typeof(debug) === 'undefined') {
-        debug = true;
-      }
-
-      if (debug) {
+    parse: function (text) {
+      if (this.debug) {
         console.time('OBJLoader');
       }
 
@@ -748,7 +748,7 @@ module.exports = function (THREE) {
 
       }
 
-      if (debug) {
+      if (this.debug) {
         console.timeEnd('OBJLoader');
       }
 
