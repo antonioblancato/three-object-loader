@@ -3,3 +3,8 @@ build
 coverage
 npm-debug.log
 dist
+
+/* editor */
+*.swp
+*.swo
+tags
